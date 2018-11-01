@@ -1,0 +1,11 @@
+.topBar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: rgba(black, .7);
+  color: white;
+
+  > div {
+    margin: 1rem;
+  }
+}

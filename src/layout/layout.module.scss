@@ -1,0 +1,56 @@
+.app {
+  position: relative;
+  height: 100vh;
+
+  background: #eee;
+}
+
+.pixels {
+  position: fixed;
+  top: 10vw;
+  bottom: 10vw;
+  left: 10vw;
+  right: 10vw;
+
+  svg {
+    height: 100%;
+    max-width: 100%;
+  }
+
+}
+
+.containerWrapper {
+  z-index: 10;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  &, * {
+    z-index: 10;
+  }
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+
+  .above {
+    order: 0;
+  }
+  
+  .content {
+    order: 1;
+    background-color: rgba(255, 255, 255, 0.9);
+    padding: 2rem;
+  
+    p {
+      max-width: 20rem;
+    }
+  }
+
+  .below {
+    order: 2;
+  }
+}
