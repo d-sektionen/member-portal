@@ -12,7 +12,7 @@ function parseTokenFromUrl() {
   if (parsed.token !== undefined) {
       Cookies.set('token', parsed.token);
       // update url in the address bar without refreshing the page.
-      window.history.replaceState(window.history.state, window.history.pageTitle, '/');
+      window.history.replaceState(window.history.state, window.history.pageTitle, window.location.pathname);
   }
 }
 
