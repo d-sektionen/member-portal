@@ -1,9 +1,11 @@
 {
   "name": "member-portal",
   "version": "0.1.0",
+  "homepage": "https://d-sektionen.github.io/member-portal",
   "private": true,
   "dependencies": {
     "axios": "^0.18.0",
+    "gh-pages": "^2.0.1",
     "js-cookie": "^2.2.0",
     "node-sass": "^4.9.4",
     "react": "^16.5.2",
@@ -11,6 +13,8 @@
     "react-scripts": "2.0.5"
   },
   "scripts": {
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build",
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",

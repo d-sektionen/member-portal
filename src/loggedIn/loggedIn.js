@@ -64,13 +64,13 @@ class LoginTest extends Component {
             <TopBar name={this.state.data.username} logout={LoginTest.logout} />
           </Above>
           <Content>
-            <p>
+            <div>
               {this.state.data.sections.length !== 0 ?
               `Du är medlem i ${this.state.data.sections.map(s => s.name).join(', ')}.`
               :
               'Du saknar sektionsmedlemsskap.'
               }
-            </p>
+            </div>
             <Preferences user={this.state.data}/>
           </Content>
         </>

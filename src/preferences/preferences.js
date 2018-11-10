@@ -2,13 +2,16 @@ import React, { Component } from 'react';
 import {BASE_URL} from "../config";
 import Cookies from 'js-cookie';
 import axios from 'axios';
+
+import style from './preferences.module.scss';
+
 import { stringify } from 'querystring';
 
 class Preferences extends Component {
   constructor(props) {
     super(props)
 
-    console.log(props);
+    if (!props.user.profile) props.user.profile={}
 
     this.state = {
       liuCardId: props.user.profile.liu_card_id,
@@ -50,25 +53,25 @@ class Preferences extends Component {
     return (
       <form onSubmit={this.handleSubmit}>
         <div>
-          <label>
+          <label className={style.inputLabel}>
             Förnamn:
             <input value={this.state.firstName} onChange={e => this.handleChange('firstName', e)} />
           </label>
         </div>
         <div>
-          <label>
+          <label className={style.inputLabel}>
             Efternamn:
             <input value={this.state.lastName} onChange={e => this.handleChange('lastName', e)} />
           </label>
         </div>
         <div>
-          <label>
+          <label className={style.inputLabel}>
             LiU-kortnummer:
             <input value={this.state.liuCardId} onChange={e => this.handleChange('liuCardId', e)} />
           </label>
         </div>
         <div>
-          <input type="submit" value="Submit" />
+          <input type="submit" value="Submit" className={`${style.submit} button`} />
         </div>
       </form>
     );

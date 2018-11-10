@@ -13,6 +13,10 @@ code {
     monospace;
 }
 
+* {
+  box-sizing: border-box;
+}
+
 .button {
   text-decoration: none;
   color: #fff;
@@ -20,4 +24,7 @@ code {
   text-align: center;
   padding: 1rem;
   display: block;
+  border: none;
+  outline: none;
+  cursor: pointer;
 }

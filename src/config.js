@@ -1,3 +1,3 @@
-let BASE_URL = "http://localhost:8000";
+let BASE_URL = "https://api.d-sektionen.se";
 
 module.exports = {BASE_URL};

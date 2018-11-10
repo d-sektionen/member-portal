@@ -13,3 +13,9 @@ Run the following commands:
 npm install
 npm start
 ```
+
+## Deploying
+
+Run `npm run deploy`
+
+Don't forget to also push your changes to git!
