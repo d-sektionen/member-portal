@@ -16,7 +16,8 @@ class Preferences extends Component {
     this.state = {
       liuCardId: props.user.profile.liu_card_id,
       firstName: props.user.first_name,
-      lastName: props.user.last_name
+      lastName: props.user.last_name,
+      errors: {}
     }
     
     this.handleChange = this.handleChange.bind(this);
@@ -31,6 +32,9 @@ class Preferences extends Component {
     let url = BASE_URL + "/account/user/me/";
     let token = Cookies.get('token');
 
+    // reset errors
+    this.setState({error: undefined, success: undefined, errors: {}})
+
     axios.put(url, {
       first_name: this.state.firstName,
       last_name: this.state.lastName,
@@ -44,7 +48,16 @@ class Preferences extends Component {
       }
     })
     .then((res) => {
-      console.log(res.data);
+      if (res.status < 300)
+        this.setState({ success: "Ändringarna har sparats." });
+    })
+    .catch((err) => {
+      if (!err.response)
+        this.setState({ error: "Nätverksfel." })
+      else if (err.response.status === 400)
+        this.setState({ errors: err.response.data });
+      else
+        this.setState({ error: "Något gick fel." })
     });
     event.preventDefault();
   }
@@ -57,21 +70,28 @@ class Preferences extends Component {
             Förnamn:
             <input value={this.state.firstName} onChange={e => this.handleChange('firstName', e)} />
           </label>
+          {this.state.errors.first_name && <div className={style.error}>{this.state.errors.first_name}</div>}
         </div>
         <div>
           <label className={style.inputLabel}>
             Efternamn:
             <input value={this.state.lastName} onChange={e => this.handleChange('lastName', e)} />
           </label>
+          {this.state.errors.last_name && <div className={style.error}>{this.state.errors.last_name}</div>}
         </div>
         <div>
           <label className={style.inputLabel}>
             LiU-kortnummer:
             <input value={this.state.liuCardId} onChange={e => this.handleChange('liuCardId', e)} />
           </label>
+          {this.state.errors.profile && this.state.errors.profile.liu_card_id && <div className={style.error}>{this.state.errors.profile.liu_card_id}</div>}
         </div>
         <div>
-          <input type="submit" value="Submit" className={`${style.submit} button`} />
+          <input type="submit" value="Spara" className={`${style.submit} button`} />
+        </div>
+        <div>
+          {this.state.error && <div className={style.error}>{this.state.error}</div>}
+          {this.state.success && <div className={style.success}>{this.state.success}</div>}
         </div>
       </form>
     );
